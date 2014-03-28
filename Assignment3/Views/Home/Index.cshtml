@@ -1,28 +1,20 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div>
-   
-<img src="~/images/bcit-header.JPG" alt="bcit header image"/>
-</div>
+
 <div>
     <h2>BCIT CST Option Selection</h2>
 </div>
 <div class="container center-block">
     <form class="form-horizontal" role="form">
-
         <div class="form-group">
-
-       
                 <label for="studentnumber" class="col-md-3 control-label">
                     Student Number:
                 </label>
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="studentnumber" placeholder="A00######">
                 </div>
-            </div>
-       
-
+            </div>   
         <div class="form-group">
             <label for="firstname" class="col-md-3 control-label">
                 First Name:
@@ -39,10 +31,9 @@
                 <input type="text" class="form-control" id="lastname" placeholder="Last Name">
             </div>
             </div>
-
         <div class="form-group">
             
-                <label for="option1" class="col-md-3 control-label">
+                <label for="firstchoice" class="col-md-3 control-label">
                     First Choice:
                 </label>
                 <div class="col-md-6">
@@ -56,7 +47,7 @@
             </div>
 
         <div class="form-group">
-            <label for="option2" class="col-md-3 control-label">
+            <label for="secondchoice" class="col-md-3 control-label">
                 Second Choice:
             </label>
             <div class="col-md-6">
@@ -70,7 +61,7 @@
         </div>
 
         <div class="form-group">
-            <label for="option3" class="col-md-3 control-label">
+            <label for="thirdchoice" class="col-md-3 control-label">
                 Third Choice:
             </label>
             <div class="col-md-6" id="option3">
@@ -84,7 +75,7 @@
         </div>
 
         <div class="form-group">
-            <label for="option4" class="col-md-3 control-label">
+            <label for="fourthchoice" class="col-md-3 control-label">
                 Fourth Choice:
             </label>
             <div class="col-md-6" id="option4">
@@ -106,10 +97,7 @@
                 <button type="button" id="btn_submit" class="btn btn-primary">Submit</button>
             </div>
 
-        </div>
-
-        </div>
-
+        </div> 
     </form>
 </div>
 

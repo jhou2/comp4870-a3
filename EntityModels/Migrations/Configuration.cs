@@ -26,7 +26,7 @@ namespace EntityModels.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            /*
+            
             Option option1 = new Option { Title = "Data Communications", IsActive = true };
             Option option2 = new Option { Title = "Client Server", IsActive = true };
             Option option3 = new Option { Title = "Digital Processing", IsActive = true };
@@ -54,14 +54,14 @@ namespace EntityModels.Migrations
             context.Terms.AddOrUpdate(term5);
             context.SaveChanges();
 
-            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1231", FirstName = "Joe", LastName = "Smith", Term = term1, FirstChoice = option1, SecondChoice = option2, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 1, 1) });
-            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1232", FirstName = "Bob", LastName = "Scott", Term = term2, FirstChoice = option4, SecondChoice = option3, ThirdChoice = option2, FourthChoice = option1, CreateDate = new DateTime(2014, 2, 2) });
-            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1233", FirstName = "Jane", LastName = "Doe", Term = term1, FirstChoice = option1, SecondChoice = option3, ThirdChoice = option2, FourthChoice = option4, CreateDate = new DateTime(2014, 3, 3) });
-            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1234", FirstName = "Sarah", LastName = "Black", Term = term3, FirstChoice = option3, SecondChoice = option1, ThirdChoice = option4, FourthChoice = option2, CreateDate = new DateTime(2014, 4, 4) });
-            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1235", FirstName = "Bill", LastName = "White", Term = term4, FirstChoice = option2, SecondChoice = option1, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 5, 5) });
+            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123122", FirstName = "Joe", LastName = "Smith", Term = term1, FirstChoice = option1, SecondChoice = option2, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 1, 1) });
+            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123222", FirstName = "Bob", LastName = "Scott", Term = term2, FirstChoice = option4, SecondChoice = option3, ThirdChoice = option2, FourthChoice = option1, CreateDate = new DateTime(2014, 2, 2) });
+            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123322", FirstName = "Jane", LastName = "Doe", Term = term1, FirstChoice = option1, SecondChoice = option3, ThirdChoice = option2, FourthChoice = option4, CreateDate = new DateTime(2014, 3, 3) });
+            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123422", FirstName = "Sarah", LastName = "Black", Term = term3, FirstChoice = option3, SecondChoice = option1, ThirdChoice = option4, FourthChoice = option2, CreateDate = new DateTime(2014, 4, 4) });
+            context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123522", FirstName = "Bill", LastName = "White", Term = term4, FirstChoice = option2, SecondChoice = option1, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 5, 5) });
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A1236", FirstName = "John", LastName = "Brown", Term = term5, FirstChoice = option1, SecondChoice = option2, ThirdChoice = option4, FourthChoice = option3, CreateDate = new DateTime(2014, 6, 6) });
             context.SaveChanges();
-            */
+            
         }
     }
 }
