@@ -1,31 +1,115 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div>
+   
+<img src="~/images/bcit-header.JPG" alt="bcit header image"/>
+</div>
+<div>
+    <h2>BCIT CST Option Selection</h2>
+</div>
+<div class="container center-block">
+    <form class="form-horizontal" role="form">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <div class="form-group">
+
+       
+                <label for="studentnumber" class="col-md-3 control-label">
+                    Student Number:
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="studentnumber" placeholder="A00######">
+                </div>
+            </div>
+       
+
+        <div class="form-group">
+            <label for="firstname" class="col-md-3 control-label">
+                First Name:
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name">
+            </div>
+            </div>
+        <div class="form-group">
+            <label for="lastname" class="col-md-3 control-label">
+                Last Name:
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+            </div>
+            </div>
+
+        <div class="form-group">
+            
+                <label for="option1" class="col-md-3 control-label">
+                    First Choice:
+                </label>
+                <div class="col-md-6">
+                    <select class="form-control" id="option1">
+                        <option selected="selected" value="Information Systems">Information Systems</option>
+                        <option value="Data Communications">Data Communications</option>
+                        <option value="Digital Processing">Digital Processing</option>
+                        <option value="Client Server">Client Server</option>
+                    </select>
+                </div>
+            </div>
+
+        <div class="form-group">
+            <label for="option2" class="col-md-3 control-label">
+                Second Choice:
+            </label>
+            <div class="col-md-6">
+                <select class="form-control" id="option2">
+                    <option value="Information Systems">Information Systems</option>
+                    <option selected="selected" value="Data Communications">Data Communications</option>
+                    <option value="Digital Processing">Digital Processing</option>
+                    <option value="Client Server">Client Server</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="option3" class="col-md-3 control-label">
+                Third Choice:
+            </label>
+            <div class="col-md-6" id="option3">
+                <select class="form-control">
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Data Communications">Data Communications</option>
+                    <option selected="selected" value="Digital Processing">Digital Processing</option>
+                    <option value="Client Server">Client Server</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="option4" class="col-md-3 control-label">
+                Fourth Choice:
+            </label>
+            <div class="col-md-6" id="option4">
+                <select class="form-control">
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Data Communications">Data Communications</option>
+                    <option value="Digital Processing">Digital Processing</option>
+                    <option selected="selected" value="Client Server">Client Server</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-6">
+                <button type="button" id="btn_clear" class="btn btn-primary">Clear</button>
+                <button type="button" id="btn_submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </div>
+
+        </div>
+
+    </form>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
