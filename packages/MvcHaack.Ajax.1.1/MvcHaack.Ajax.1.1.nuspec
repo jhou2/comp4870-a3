@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MvcHaack.Ajax</id>
+    <version>1.1</version>
+    <title>MvcHaack.Ajax</title>
+    <authors>Phil Haack</authors>
+    <owners>Phil Haack</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/Haacked/CodeHaacks</projectUrl>
+    <iconUrl>http://haacked.com/images/Inspector-120x120.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A libary for easily calling ASP.NET MVC Action methods from JavaScript</description>
+    <summary>A libary for easily calling ASP.NET MVC Action methods from JavaScript</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>aspnetmvc asp.net aspnet asp.net-mvc controllerdescriptor controller</tags>
+  </metadata>
+</package>
