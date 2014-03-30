@@ -15,6 +15,7 @@ namespace Assignment3.Controllers
         private DiplomaContext db = new DiplomaContext();
 
         // GET: /Option/
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Options.ToList());

@@ -1,6 +1,7 @@
 ﻿using EntityModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -15,20 +16,23 @@ namespace Assignment3.DataContext
         public DbSet<Option> Options { get; set; }
         public DbSet<Choice> Choices { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<Choice>().
-            //    HasMany(p => p.Option).
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //   // modelBuilder.Entity<Term>().Property(m => m.TermCode)
+        //   //  .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+        //    //modelBuilder.Entity<Choice>().
+        //    //    HasMany(p => p.Option).
                 
-            //    Map(
-            //        m =>
-            //        {
-            //            m.ToTable("Option");
-            //            m.MapLeftKey("Choice");
+        //    //    Map(
+        //    //        m =>
+        //    //        {
+        //    //            m.ToTable("Option");
+        //    //            m.MapLeftKey("Choice");
                         
-            //        });
-            // modelBuilder.Entity<User>().HasRequired(u => u.Role);
-            modelBuilder.Entity<Choice>().HasRequired(p => p.Term);
-        }
+        //    //        });
+        //    // modelBuilder.Entity<User>().HasRequired(u => u.Role);
+        //   // modelBuilder.Entity<Choice>().HasRequired(p => p.Term);
+        //}
     }
 }

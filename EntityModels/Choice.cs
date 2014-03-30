@@ -32,27 +32,22 @@ namespace EntityModels
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Term is required.")]
-        //[ForeignKey("Term")]
         public virtual Term Term { get; set; }
 
         [Required(ErrorMessage = "First Choice is required.")]
         [Display(Name = "First Choice")]
-        //[ForeignKey("Option")]
         public virtual Option FirstChoice { get; set; }
 
         [Required(ErrorMessage = "Second Choice is required.")]
         [Display(Name = "Second Choice")]
-        //[ForeignKey("Option")]
         public virtual Option SecondChoice { get; set; }
 
         [Required(ErrorMessage = "Third Choice is required.")]
         [Display(Name = "Third Choice")]
-        //[ForeignKey("Option")]
         public virtual Option ThirdChoice { get; set; }
 
         [Required(ErrorMessage = "Fourth Choice is required.")]
         [Display(Name = "Fourth Choice")]
-        //[ForeignKey("Option")]
         public virtual Option FourthChoice { get; set; }
 
         [Required(ErrorMessage = "Date Created is required.")]

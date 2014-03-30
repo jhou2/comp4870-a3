@@ -177,13 +177,8 @@
     <Compile Include="Controllers\OptionController.cs" />
     <Compile Include="Controllers\TermController.cs" />
     <Compile Include="DAL\DiplomaInitializer.cs" />
-    <Compile Include="DataContext\DiplomaContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201403300625120_initialcreate.cs" />
-    <Compile Include="Migrations\201403300625120_initialcreate.Designer.cs">
-      <DependentUpon>201403300625120_initialcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -275,9 +270,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403300625120_initialcreate.resx">
-      <DependentUpon>201403300625120_initialcreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="DataContext\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

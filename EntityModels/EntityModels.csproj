@@ -47,7 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Choice.cs" />
-    <Compile Include="DiplomaContext_old.cs" />
+    <Compile Include="DiplomaContext.cs" />
+    <Compile Include="Migrations\201403301008063_initcreate.cs" />
+    <Compile Include="Migrations\201403301008063_initcreate.Designer.cs">
+      <DependentUpon>201403301008063_initcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403301011422_seedcreate.cs" />
+    <Compile Include="Migrations\201403301011422_seedcreate.Designer.cs">
+      <DependentUpon>201403301011422_seedcreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Term.cs" />
@@ -55,6 +64,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201403301008063_initcreate.resx">
+      <DependentUpon>201403301008063_initcreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403301011422_seedcreate.resx">
+      <DependentUpon>201403301011422_seedcreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
