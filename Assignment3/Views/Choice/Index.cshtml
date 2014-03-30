@@ -24,7 +24,8 @@
             @Html.DisplayNameFor(model => model.CreateDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstChoice)
+            Choices
+
         </th>
         <th></th>
     </tr>
@@ -44,10 +45,13 @@
             @Html.DisplayFor(modelItem => item.CreateDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstChoice.Title)
+           1. @Html.DisplayFor(modelItem => item.FirstChoice.Title) <br/>
+           2. @Html.DisplayFor(modelItem => item.SecondChoice.Title) <br />
+           3. @Html.DisplayFor(modelItem => item.ThirdChoice.Title) <br />
+           4. @Html.DisplayFor(modelItem => item.FourthChoice.Title) 
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChoiceId }) |
+          <!--  @Html.ActionLink("Edit", "Edit", new { id=item.ChoiceId }) | -->
             @Html.ActionLink("Details", "Details", new { id=item.ChoiceId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ChoiceId })
         </td>
