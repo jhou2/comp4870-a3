@@ -1,7 +1,5 @@
 using System.Web.Optimization;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Assignment3.App_Start.AjaxHelperBundleConfig), "RegisterBundles")]
-
 namespace Assignment3.App_Start
 {
 	public class AjaxHelperBundleConfig

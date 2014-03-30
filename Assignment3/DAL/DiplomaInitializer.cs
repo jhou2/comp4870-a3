@@ -1,37 +1,18 @@
-namespace Assignment3.Migrations
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using EntityModels;
+using System.Data.Entity.Migrations;
+
+
+namespace Assignment3.DAL
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;  
-    using System.Collections.Generic;   
-    using System.Web; 
-    using EntityModels;
-    
-
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Assignment3.DataContext.DiplomaContext>
+    public class DiplomaInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DiplomaContext>
     {
-        public Configuration()
+        protected override void Seed(DiplomaContext context)
         {
-            AutomaticMigrationsEnabled = false;
-        }
-
-        protected override void Seed(Assignment3.DataContext.DiplomaContext context)
-        {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
             Option option1 = new Option { Title = "Data Communications", IsActive = true };
             Option option2 = new Option { Title = "Client Server", IsActive = true };
             Option option3 = new Option { Title = "Digital Processing", IsActive = true };
@@ -65,7 +46,6 @@ namespace Assignment3.Migrations
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123522", FirstName = "Bill", LastName = "White", Term = term4, FirstChoice = option2, SecondChoice = option1, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 5, 5) });
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123622", FirstName = "John", LastName = "Brown", Term = term5, FirstChoice = option1, SecondChoice = option2, ThirdChoice = option4, FourthChoice = option3, CreateDate = new DateTime(2014, 6, 6) });
             context.SaveChanges();
-
         }
     }
 }

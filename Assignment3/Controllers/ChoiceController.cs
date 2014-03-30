@@ -2,102 +2,117 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using System.Web;
+using System.Web.Mvc;
 using EntityModels;
 
 namespace Assignment3.Controllers
 {
-    public class ChoiceController : ApiController
+    public class ChoiceController : Controller
     {
         private DiplomaContext db = new DiplomaContext();
 
-        // GET api/Choice
-        public IQueryable<Choice> GetChoices()
+        // GET: /Choice/
+        public ActionResult Index()
         {
-            return db.Choices;
+            return View(db.Choices.ToList());
         }
 
-        // GET api/Choice/5
-        [ResponseType(typeof(Choice))]
-        public IHttpActionResult GetChoice(int id)
+        // GET: /Choice/Details/5
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Choice choice = db.Choices.Find(id);
             if (choice == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
-
-            return Ok(choice);
+            return View(choice);
         }
 
-        // PUT api/Choice/5
-        public IHttpActionResult PutChoice(int id, Choice choice)
+        // GET: /Choice/Create
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            return View();
+        }
 
-            if (id != choice.ChoiceId)
+        // POST: /Choice/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="ChoiceId,StudentNumber,FirstName,LastName,CreateDate")] Choice choice)
+        {
+            if (ModelState.IsValid)
             {
-                return BadRequest();
-            }
-
-            db.Entry(choice).State = EntityState.Modified;
-
-            try
-            {
+                db.Choices.Add(choice);
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ChoiceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToAction("Index");
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return View(choice);
         }
 
-        // POST api/Choice
-        [ResponseType(typeof(Choice))]
-        public IHttpActionResult PostChoice(Choice choice)
+        // GET: /Choice/Edit/5
+        public ActionResult Edit(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            db.Choices.Add(choice);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = choice.ChoiceId }, choice);
-        }
-
-        // DELETE api/Choice/5
-        [ResponseType(typeof(Choice))]
-        public IHttpActionResult DeleteChoice(int id)
-        {
             Choice choice = db.Choices.Find(id);
             if (choice == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
+            return View(choice);
+        }
 
+        // POST: /Choice/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include="ChoiceId,StudentNumber,FirstName,LastName,CreateDate")] Choice choice)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(choice).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(choice);
+        }
+
+        // GET: /Choice/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Choice choice = db.Choices.Find(id);
+            if (choice == null)
+            {
+                return HttpNotFound();
+            }
+            return View(choice);
+        }
+
+        // POST: /Choice/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Choice choice = db.Choices.Find(id);
             db.Choices.Remove(choice);
             db.SaveChanges();
-
-            return Ok(choice);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -107,11 +122,6 @@ namespace Assignment3.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool ChoiceExists(int id)
-        {
-            return db.Choices.Count(e => e.ChoiceId == id) > 0;
         }
     }
 }

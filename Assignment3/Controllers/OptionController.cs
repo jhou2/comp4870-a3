@@ -2,117 +2,117 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using System.Web;
+using System.Web.Mvc;
 using EntityModels;
 
 namespace Assignment3.Controllers
 {
-    public class OptionController : ApiController
+    public class OptionController : Controller
     {
         private DiplomaContext db = new DiplomaContext();
 
-        // GET api/Option
-        public IQueryable<Option> GetOptions()
+        // GET: /Option/
+        public ActionResult Index()
         {
-            return db.Options;
+            return View(db.Options.ToList());
         }
 
-        // GET api/Option/5
-        [ResponseType(typeof(Option))]
-        public IHttpActionResult GetOption(string id)
+        // GET: /Option/Details/5
+        public ActionResult Details(string id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Option option = db.Options.Find(id);
             if (option == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
-
-            return Ok(option);
+            return View(option);
         }
 
-        // PUT api/Option/5
-        public IHttpActionResult PutOption(string id, Option option)
+        // GET: /Option/Create
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            return View();
+        }
 
-            if (id != option.Title)
+        // POST: /Option/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="Title,IsActive")] Option option)
+        {
+            if (ModelState.IsValid)
             {
-                return BadRequest();
-            }
-
-            db.Entry(option).State = EntityState.Modified;
-
-            try
-            {
+                db.Options.Add(option);
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OptionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToAction("Index");
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return View(option);
         }
 
-        // POST api/Option
-        [ResponseType(typeof(Option))]
-        public IHttpActionResult PostOption(Option option)
+        // GET: /Option/Edit/5
+        public ActionResult Edit(string id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            db.Options.Add(option);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (OptionExists(option.Title))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = option.Title }, option);
-        }
-
-        // DELETE api/Option/5
-        [ResponseType(typeof(Option))]
-        public IHttpActionResult DeleteOption(string id)
-        {
             Option option = db.Options.Find(id);
             if (option == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
+            return View(option);
+        }
 
+        // POST: /Option/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include="Title,IsActive")] Option option)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(option).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(option);
+        }
+
+        // GET: /Option/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Option option = db.Options.Find(id);
+            if (option == null)
+            {
+                return HttpNotFound();
+            }
+            return View(option);
+        }
+
+        // POST: /Option/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Option option = db.Options.Find(id);
             db.Options.Remove(option);
             db.SaveChanges();
-
-            return Ok(option);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -122,11 +122,6 @@ namespace Assignment3.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool OptionExists(string id)
-        {
-            return db.Options.Count(e => e.Title == id) > 0;
         }
     }
 }

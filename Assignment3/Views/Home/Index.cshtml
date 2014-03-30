@@ -2,20 +2,22 @@
     ViewBag.Title = "Home Page";
 }
 
+
+    
 <div>
     <h2>BCIT CST Option Selection</h2>
 </div>
 <div class="container center-block">
     <form class="form-horizontal" role="form" id="optionForm">
         <div class="form-group">
-            
-                <label for="studentnumber" class="col-md-3 control-label">
-                    Student Number:
-                </label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="studentnumber" placeholder="A00######" pattern="^A00\d{6}$" required title="A00###### - 9 characters minimum" />
-                </div>
-            </div>   
+
+            <label for="studentnumber" class="col-md-3 control-label">
+                Student Number:
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="studentnumber" placeholder="A00######" pattern="^A00\d{6}$" required title="A00###### - 9 characters minimum" />
+            </div>
+        </div>
         <div class="form-group">
             <label for="firstname" class="col-md-3 control-label">
                 First Name:
@@ -23,29 +25,29 @@
             <div class="col-md-6">
                 <input type="text" class="form-control" id="firstname" placeholder="First Name" pattern=".{1,40}" required title="40 characters maximum" />
             </div>
-            </div>
+        </div>
         <div class="form-group">
-            <label for="lastname" class="col-md-3 control-label" >
+            <label for="lastname" class="col-md-3 control-label">
                 Last Name:
             </label>
             <div class="col-md-6">
                 <input type="text" class="form-control" id="lastname" placeholder="Last Name" pattern=".{1,40}" required title="40 characters maximum" />
             </div>
-            </div>
+        </div>
         <div class="form-group">
-            
-                <label for="firstchoice" class="col-md-3 control-label">
-                    First Choice:
-                </label>
-                <div class="col-md-6">
-                    <select class="form-control required" id="option1" >
-                        <option selected="selected" value="Information Systems">Information Systems</option>
-                        <option value="Data Communications">Data Communications</option>
-                        <option value="Digital Processing">Digital Processing</option>
-                        <option value="Client Server">Client Server</option>
-                    </select>
-                </div>
+
+            <label for="firstchoice" class="col-md-3 control-label">
+                First Choice:
+            </label>
+            <div class="col-md-6">
+                <select class="form-control" id="option1" required>
+                    <option selected="selected" value="Information Systems">Information Systems</option>
+                    <option value="Data Communications">Data Communications</option>
+                    <option value="Digital Processing">Digital Processing</option>
+                    <option value="Client Server">Client Server</option>
+                </select>
             </div>
+        </div>
 
         <div class="form-group">
             <label for="secondchoice" class="col-md-3 control-label">
@@ -65,8 +67,8 @@
             <label for="thirdchoice" class="col-md-3 control-label">
                 Third Choice:
             </label>
-            <div class="col-md-6" id="option3" required>
-                <select class="form-control">
+            <div class="col-md-6" id="option3">
+                <select class="form-control" required>
                     <option value="Information Systems">Information Systems</option>
                     <option value="Data Communications">Data Communications</option>
                     <option selected="selected" value="Digital Processing">Digital Processing</option>
@@ -79,8 +81,8 @@
             <label for="fourthchoice" class="col-md-3 control-label">
                 Fourth Choice:
             </label>
-            <div class="col-md-6" id="option4" required>
-                <select class="form-control">
+            <div class="col-md-6" id="option4">
+                <select class="form-control" required>
                     <option value="Information Systems">Information Systems</option>
                     <option value="Data Communications">Data Communications</option>
                     <option value="Digital Processing">Digital Processing</option>
@@ -99,7 +101,7 @@
             </div>
 
         </div>
-        
+
     </form>
     <script>
         $(".optionForm").validate({
@@ -111,5 +113,3 @@
 </div>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
-

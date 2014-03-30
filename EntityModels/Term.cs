@@ -9,14 +9,18 @@ namespace EntityModels
     public class Term
     {
         [Key]
-        [Required]
+        [Required(ErrorMessage = "Term Code is required.")]
+        [Display(Name="Term Code")]
         public int TermCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Description is required.")]
         [MaxLength(50)]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Status is required.")]
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
+
+
     }
 }

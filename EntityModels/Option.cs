@@ -9,11 +9,12 @@ namespace EntityModels
     public class Option
     {
         [Key]
-        [Required]
+        [Required(ErrorMessage="Title is required")]
         [MaxLength(50)]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Status is required.")]
+        [Display(Name="Active")]
         public bool IsActive { get; set; }
     }
 }

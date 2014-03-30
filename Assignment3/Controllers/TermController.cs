@@ -2,102 +2,117 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
+using System.Web;
+using System.Web.Mvc;
 using EntityModels;
 
 namespace Assignment3.Controllers
 {
-    public class TermController : ApiController
+    public class TermController : Controller
     {
         private DiplomaContext db = new DiplomaContext();
 
-        // GET api/Term
-        public IQueryable<Term> GetTerms()
+        // GET: /Term/
+        public ActionResult Index()
         {
-            return db.Terms;
+            return View(db.Terms.ToList());
         }
 
-        // GET api/Term/5
-        [ResponseType(typeof(Term))]
-        public IHttpActionResult GetTerm(int id)
+        // GET: /Term/Details/5
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Term term = db.Terms.Find(id);
             if (term == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
-
-            return Ok(term);
+            return View(term);
         }
 
-        // PUT api/Term/5
-        public IHttpActionResult PutTerm(int id, Term term)
+        // GET: /Term/Create
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            return View();
+        }
 
-            if (id != term.TermCode)
+        // POST: /Term/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="TermCode,Description,IsActive")] Term term)
+        {
+            if (ModelState.IsValid)
             {
-                return BadRequest();
-            }
-
-            db.Entry(term).State = EntityState.Modified;
-
-            try
-            {
+                db.Terms.Add(term);
                 db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TermExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToAction("Index");
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return View(term);
         }
 
-        // POST api/Term
-        [ResponseType(typeof(Term))]
-        public IHttpActionResult PostTerm(Term term)
+        // GET: /Term/Edit/5
+        public ActionResult Edit(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return BadRequest(ModelState);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            db.Terms.Add(term);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = term.TermCode }, term);
-        }
-
-        // DELETE api/Term/5
-        [ResponseType(typeof(Term))]
-        public IHttpActionResult DeleteTerm(int id)
-        {
             Term term = db.Terms.Find(id);
             if (term == null)
             {
-                return NotFound();
+                return HttpNotFound();
             }
+            return View(term);
+        }
 
+        // POST: /Term/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include="TermCode,Description,IsActive")] Term term)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(term).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(term);
+        }
+
+        // GET: /Term/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Term term = db.Terms.Find(id);
+            if (term == null)
+            {
+                return HttpNotFound();
+            }
+            return View(term);
+        }
+
+        // POST: /Term/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Term term = db.Terms.Find(id);
             db.Terms.Remove(term);
             db.SaveChanges();
-
-            return Ok(term);
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -107,11 +122,6 @@ namespace Assignment3.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool TermExists(int id)
-        {
-            return db.Terms.Count(e => e.TermCode == id) > 0;
         }
     }
 }
