@@ -1,9 +1,59 @@
-﻿@{
+﻿@model EntityModels.Choice
+
+@{
     ViewBag.Title = "Home Page";
 }
 
+<h2>Public</h2>
 
-    
+@Scripts.Render("~/Scripts/jquery-2.1.0.js")
+@*<script src="Scripts/jquery-2.1.0.js"></script>*@
+<script>
+    $(document).ready(function () {
+        GetAllOptions();
+    });
+
+    function GetAllOptions() {
+        jQuery.support.cors = true;
+        $.ajax({
+            url: 'http://localhost:54595/api/OptionAPI',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                WriteResponse(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function WriteResponse(info) {
+        var nums = new Array("First", "Second", "Third", "Fourth");
+        var strResult = "";
+        for (var i = 0; i < 4; i++) {
+            strResult += "<div class=\"form-group\">\n";
+            strResult += "<label for=\"" + nums[i] + "choice\" class=\"col-md-3 control-label\">\n";
+            strResult += nums[i] + " Choice:\n";
+            strResult += "</label>\n"
+            strResult += "<div class=\"col-md-6\">\n";
+            strResult += "<select class=\"form-control\" id=\"option" + i + "\" required>\n";
+            $.each(info, function (index, option) {
+                strResult += "<option value=\"" + option.Title + "\"";
+                if (i == index) {
+                    strResult += " selected=\"selected\" ";
+                }
+                strResult += ">" + option.Title + "</option>\n";
+            });
+            strResult += "</select>\n";
+            strResult += "</div>\n";
+            strResult += "</div>\n\n";
+        }
+        $("#divResult").html(strResult);
+    }
+
+</script>
+
 <div>
     <h2 id="term">BCIT CST Option Selection - Spring/Summer 2014</h2>
 </div>
@@ -36,61 +86,10 @@
                 <input type="text" class="form-control" id="lastname" placeholder="Last Name" pattern=".{1,40}" required title="40 characters maximum" />
             </div>
         </div>
-        <div class="form-group">
 
-            <label for="firstchoice" class="col-md-3 control-label">
-                First Choice:
-            </label>
-            <div class="col-md-6">
-                <select class="form-control" id="option1" required>
-                    <option selected="selected" value="Information Systems">Information Systems</option>
-                    <option value="Data Communications">Data Communications</option>
-                    <option value="Digital Processing">Digital Processing</option>
-                    <option value="Client Server">Client Server</option>
-                </select>
-            </div>
-        </div>
+        <asp:scriptmanager runat="server" />
+        <div id="divResult">
 
-        <div class="form-group">
-            <label for="secondchoice" class="col-md-3 control-label">
-                Second Choice:
-            </label>
-            <div class="col-md-6">
-                <select class="form-control" id="option2" required>
-                    <option value="Information Systems">Information Systems</option>
-                    <option selected="selected" value="Data Communications">Data Communications</option>
-                    <option value="Digital Processing">Digital Processing</option>
-                    <option value="Client Server">Client Server</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="thirdchoice" class="col-md-3 control-label">
-                Third Choice:
-            </label>
-            <div class="col-md-6" id="option3">
-                <select class="form-control" required>
-                    <option value="Information Systems">Information Systems</option>
-                    <option value="Data Communications">Data Communications</option>
-                    <option selected="selected" value="Digital Processing">Digital Processing</option>
-                    <option value="Client Server">Client Server</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="fourthchoice" class="col-md-3 control-label">
-                Fourth Choice:
-            </label>
-            <div class="col-md-6" id="option4">
-                <select class="form-control" required>
-                    <option value="Information Systems">Information Systems</option>
-                    <option value="Data Communications">Data Communications</option>
-                    <option value="Digital Processing">Digital Processing</option>
-                    <option selected="selected" value="Client Server">Client Server</option>
-                </select>
-            </div>
         </div>
 
         <div class="form-group">
@@ -112,11 +111,13 @@
             }
         });
         document.getElementById("optionForm").onsubmit = function () {
-            
+
             return false;
         };
     </script>
 </div>
+
+
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
