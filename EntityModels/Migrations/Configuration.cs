@@ -27,6 +27,7 @@ namespace EntityModels.Migrations
             //    );
             //
 
+            /*
             Option option1 = new Option { Title = "Data Communications", IsActive = true };
             Option option2 = new Option { Title = "Client Server", IsActive = true };
             Option option3 = new Option { Title = "Digital Processing", IsActive = true };
@@ -60,7 +61,7 @@ namespace EntityModels.Migrations
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123422", FirstName = "Sarah", LastName = "Black", Term = term3, FirstChoice = option3, SecondChoice = option1, ThirdChoice = option4, FourthChoice = option2, CreateDate = new DateTime(2014, 4, 4) });
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123522", FirstName = "Bill", LastName = "White", Term = term4, FirstChoice = option2, SecondChoice = option1, ThirdChoice = option3, FourthChoice = option4, CreateDate = new DateTime(2014, 5, 5) });
             context.Choices.AddOrUpdate(new Choice { StudentNumber = "A00123622", FirstName = "John", LastName = "Brown", Term = term5, FirstChoice = option1, SecondChoice = option2, ThirdChoice = option4, FourthChoice = option3, CreateDate = new DateTime(2014, 6, 6) });
-            context.SaveChanges();
+            context.SaveChanges();*/
         }
     }
 }

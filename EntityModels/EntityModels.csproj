@@ -48,13 +48,21 @@
   <ItemGroup>
     <Compile Include="Choice.cs" />
     <Compile Include="DiplomaContext.cs" />
-    <Compile Include="Migrations\201403301008063_initcreate.cs" />
-    <Compile Include="Migrations\201403301008063_initcreate.Designer.cs">
-      <DependentUpon>201403301008063_initcreate.cs</DependentUpon>
+    <Compile Include="Migrations\201403311926000_fixcreate.cs" />
+    <Compile Include="Migrations\201403311926000_fixcreate.Designer.cs">
+      <DependentUpon>201403311926000_fixcreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403301011422_seedcreate.cs" />
-    <Compile Include="Migrations\201403301011422_seedcreate.Designer.cs">
-      <DependentUpon>201403301011422_seedcreate.cs</DependentUpon>
+    <Compile Include="Migrations\201403311949419_newthing.cs" />
+    <Compile Include="Migrations\201403311949419_newthing.Designer.cs">
+      <DependentUpon>201403311949419_newthing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403312029144_othercreate.cs" />
+    <Compile Include="Migrations\201403312029144_othercreate.Designer.cs">
+      <DependentUpon>201403312029144_othercreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403312035486_diffcreate.cs" />
+    <Compile Include="Migrations\201403312035486_diffcreate.Designer.cs">
+      <DependentUpon>201403312035486_diffcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Option.cs" />
@@ -66,11 +74,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403301008063_initcreate.resx">
-      <DependentUpon>201403301008063_initcreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403311926000_fixcreate.resx">
+      <DependentUpon>201403311926000_fixcreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201403301011422_seedcreate.resx">
-      <DependentUpon>201403301011422_seedcreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403311949419_newthing.resx">
+      <DependentUpon>201403311949419_newthing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403312029144_othercreate.resx">
+      <DependentUpon>201403312029144_othercreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403312035486_diffcreate.resx">
+      <DependentUpon>201403312035486_diffcreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

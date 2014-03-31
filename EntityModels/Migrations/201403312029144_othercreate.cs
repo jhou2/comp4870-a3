@@ -3,7 +3,7 @@ namespace EntityModels.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class seedcreate : DbMigration
+    public partial class othercreate : DbMigration
     {
         public override void Up()
         {

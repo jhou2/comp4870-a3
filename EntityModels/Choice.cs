@@ -31,23 +31,33 @@ namespace EntityModels
         [StringLength(40, ErrorMessage = "Last name cannot be longer than 40 characters.")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Term is required.")]
+        public int Term_TermCode { get; set; }
+        //[Required(ErrorMessage = "Term is required.")]
+        [ForeignKey("Term_TermCode")]
         public virtual Term Term { get; set; }
 
-        [Required(ErrorMessage = "First Choice is required.")]
+        public string FirstChoice_Title { get; set; }
+        //[Required(ErrorMessage = "First Choice is required.")]
         [Display(Name = "First Choice")]
+        [ForeignKey("FirstChoice_Title")]
         public virtual Option FirstChoice { get; set; }
 
-        [Required(ErrorMessage = "Second Choice is required.")]
+        public string SecondChoice_Title { get; set; }
+        //[Required(ErrorMessage = "Second Choice is required.")]
         [Display(Name = "Second Choice")]
+        [ForeignKey("SecondChoice_Title")]
         public virtual Option SecondChoice { get; set; }
 
-        [Required(ErrorMessage = "Third Choice is required.")]
+        public string ThirdChoice_Title { get; set; }
+        //[Required(ErrorMessage = "Third Choice is required.")]
         [Display(Name = "Third Choice")]
+        [ForeignKey("ThirdChoice_Title")]
         public virtual Option ThirdChoice { get; set; }
 
-        [Required(ErrorMessage = "Fourth Choice is required.")]
+        public string FourthChoice_Title { get; set; }
+        //[Required(ErrorMessage = "Fourth Choice is required.")]
         [Display(Name = "Fourth Choice")]
+        [ForeignKey("FourthChoice_Title")]
         public virtual Option FourthChoice { get; set; }
 
         [Required(ErrorMessage = "Date Created is required.")]

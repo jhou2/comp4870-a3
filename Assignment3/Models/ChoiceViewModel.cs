@@ -42,11 +42,16 @@ namespace Assignment3.Models
                 StudentNumber = this.StudentNumber,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
-                Term = ctx.Terms.Find(this.Term),
-                FirstChoice = ctx.Options.Find(this.FirstChoice),
-                SecondChoice = ctx.Options.Find(this.SecondChoice),
-                ThirdChoice = ctx.Options.Find(this.ThirdChoice),
-                FourthChoice = ctx.Options.Find(this.FourthChoice)
+                //Term = ctx.Terms.Find(this.Term),
+                Term_TermCode = ctx.Terms.Find(this.Term).TermCode,
+                //FirstChoice = ctx.Options.Find(this.FirstChoice),
+                FirstChoice_Title = ctx.Options.Find(this.FirstChoice).Title,
+                //SecondChoice = ctx.Options.Find(this.SecondChoice),
+                SecondChoice_Title = ctx.Options.Find(this.SecondChoice).Title,
+                //ThirdChoice = ctx.Options.Find(this.ThirdChoice),
+                ThirdChoice_Title = ctx.Options.Find(this.ThirdChoice).Title,
+                //FourthChoice = ctx.Options.Find(this.FourthChoice),
+                FourthChoice_Title = ctx.Options.Find(this.FourthChoice).Title
             };
 
             return choice;

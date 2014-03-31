@@ -7,13 +7,13 @@ namespace EntityModels.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class seedcreate : IMigrationMetadata
+    public sealed partial class fixcreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(seedcreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fixcreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201403301011422_seedcreate"; }
+            get { return "201403311926000_fixcreate"; }
         }
         
         string IMigrationMetadata.Source
