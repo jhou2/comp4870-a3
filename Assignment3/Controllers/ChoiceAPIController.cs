@@ -74,14 +74,35 @@ namespace Assignment3.Controllers
         [ResponseType(typeof(Choice))]
         public IHttpActionResult PostChoice(ChoiceViewModel choiceView)
         {
-            Choice choice = choiceView.toChoice();
-            choice.CreateDate = DateTime.Now;
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState.Values.First().Errors.First().ErrorMessage);
             }
+            List<string> options = new List<string>();
+            options.Add(choiceView.FirstChoice);
+            options.Add(choiceView.SecondChoice);
+            options.Add(choiceView.ThirdChoice);
+            options.Add(choiceView.FourthChoice);
 
+            for(int i = 0; i < options.Count; i++)
+            {
+                for(int j =0; j < options.Count; j++)
+                {
+                    if(i==j)
+                    {
+                        continue;
+                    }
+                    if(options[j].Equals(options[i]))
+                    {
+                        return BadRequest("Make sure your options are not the same");
+                    }
+                }
+            }
+ 
 
+            Choice choice = choiceView.toChoice();
+            choice.CreateDate = DateTime.Now;
+            
             db.Choices.Add(choice);
             db.SaveChanges();
 
