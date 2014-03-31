@@ -22,6 +22,16 @@ namespace Assignment3.Controllers
             return db.Options;
         }
 
+        // GET api/OptionAPI/active
+        [Route("~/api/OptionAPI/active")]
+        public IQueryable<Option> GetActiveOptions()
+        {
+            IQueryable<Option> Options = from o in db.Options
+                                         where o.IsActive == true
+                                         select o;
+            return Options;
+        }
+
         // GET api/OptionAPI/5
         [ResponseType(typeof(Option))]
         public IHttpActionResult GetOption(string id)

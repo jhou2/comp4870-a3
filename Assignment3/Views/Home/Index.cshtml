@@ -1,4 +1,4 @@
-﻿@model EntityModels.Choice
+﻿@model Assignment3.Models.ChoiceViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -7,20 +7,24 @@
 <h2>Public</h2>
 
 @Scripts.Render("~/Scripts/jquery-2.1.0.js")
-@*<script src="Scripts/jquery-2.1.0.js"></script>*@
+
+
+
+
 <script>
     $(document).ready(function () {
         GetAllOptions();
+        GetTerms();
     });
 
-    function GetAllOptions() {
+    function GetTerms() {
         jQuery.support.cors = true;
         $.ajax({
-            url: 'http://localhost:54595/api/OptionAPI',
+            url: 'http://localhost:54595/api/TermAPI/active',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-                WriteResponse(data);
+                WriteTerm(data);
             },
             error: function (x, y, z) {
                 alert(x + '\n' + y + '\n' + z);
@@ -28,7 +32,41 @@
         });
     }
 
-    function WriteResponse(info) {
+    function WriteTerm(info) {
+        var strResult = "";
+        strResult += "<div class=\"form-group\">\n";
+        strResult += "<label for=\"Term\" class=\"col-md-3 control-label\">\n";
+        strResult += "Term:";
+        strResult += "</label>\n"
+        strResult += "<div class=\"col-md-6\">\n";
+        strResult += "<select class=\"form-control\" id=\"terms\" >\n";
+        $.each(info, function (index, term) {
+            strResult += "<option value=\"" + term.TermCode + "\"";
+            strResult += " >" + term.Description + "</option>\n";
+        });
+        strResult += "</select>\n";
+        strResult += "</div>\n";
+        strResult += "</div>";
+
+        $("#divTerms").html(strResult);
+    }
+
+    function GetAllOptions() {
+        jQuery.support.cors = true;
+        $.ajax({
+            url: 'http://localhost:54595/api/OptionAPI/active',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                WriteOptions(data);
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
+    }
+
+    function WriteOptions(info) {
         var nums = new Array("First", "Second", "Third", "Fourth");
         var strResult = "";
         for (var i = 0; i < 4; i++) {
@@ -49,7 +87,49 @@
             strResult += "</div>\n";
             strResult += "</div>\n\n";
         }
-        $("#divResult").html(strResult);
+        $("#divOptions").html(strResult);
+    }
+
+
+    function AddStudent() {
+        jQuery.support.cors = true;
+
+        var a = document.getElementById("option0");
+        var b = document.getElementById("option1");
+        var c = document.getElementById("option2");
+        var d = document.getElementById("option3");
+        var e = document.getElementById("terms");
+
+        var op0 = a.options[a.selectedIndex].value;
+        var op1 = b.options[b.selectedIndex].value;
+        var op2 = c.options[c.selectedIndex].value;
+        var op3 = d.options[d.selectedIndex].value;
+        var te0 = e.options[e.selectedIndex].value;
+
+
+        var student = {
+            StudentNumber: $('#studentnumber').val(),
+            FirstName: $('#firstname').val(),
+            LastName: $('#lastname').val(),
+            FirstChoice: op0,
+            SecondChoice: op1,
+            ThirdChoice: op2,
+            FourthChoice: op3,
+            Term: te0,
+        };
+
+        $.ajax({
+            url: 'http://localhost:54595/api/ChoiceAPI/',
+            type: 'POST',
+            data: JSON.stringify(student),
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                alert("Your choices have been added!");
+            },
+            error: function (x, y, z) {
+                alert(x + '\n' + y + '\n' + z);
+            }
+        });
     }
 
 </script>
@@ -88,7 +168,10 @@
         </div>
 
         <asp:scriptmanager runat="server" />
-        <div id="divResult">
+        <div id="divOptions">
+
+        </div>
+        <div id="divTerms">
 
         </div>
 
@@ -98,7 +181,7 @@
 
             <div class="col-md-6">
                 <button type="reset" id="btn_clear" class="btn btn-primary">Clear</button>
-                <button type="submit" id="btn_submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" onclick="AddStudent();">Submit</button>
             </div>
 
         </div>
@@ -118,7 +201,6 @@
 </div>
 
 
-
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src ="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
