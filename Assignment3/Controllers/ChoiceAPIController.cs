@@ -78,6 +78,12 @@ namespace Assignment3.Controllers
             {
                 return BadRequest(ModelState.Values.First().Errors.First().ErrorMessage);
             }
+
+            if(StudentExists(choiceView.StudentNumber))
+            {
+                return BadRequest("The Student number " + choiceView.StudentNumber + (" has already submit options"));
+            }
+
             List<string> options = new List<string>();
             options.Add(choiceView.FirstChoice);
             options.Add(choiceView.SecondChoice);
@@ -98,6 +104,7 @@ namespace Assignment3.Controllers
                     }
                 }
             }
+
  
 
             Choice choice = choiceView.toChoice();
@@ -137,6 +144,11 @@ namespace Assignment3.Controllers
         private bool ChoiceExists(int id)
         {
             return db.Choices.Count(e => e.ChoiceId == id) > 0;
+        }
+
+        private bool StudentExists(string studentNumber)
+        {
+            return db.Choices.Count(e => e.StudentNumber == studentNumber) > 0;
         }
     }
 }
